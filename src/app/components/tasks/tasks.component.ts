@@ -1,3 +1,5 @@
+import { Subscription } from 'rxjs';
+
 import { Component, OnInit } from '@angular/core';
 
 import { TaskService } from 'src/app/services/task.service';
@@ -11,6 +13,7 @@ import { Task } from '../../Task';
 })
 export class TasksComponent implements OnInit {
   tasks: Task[] = [];
+  subscription: Subscription;
 
   constructor(private taskService: TaskService) {}
 
@@ -19,11 +22,8 @@ export class TasksComponent implements OnInit {
   }
 
   deleteTask(task: Task) {
-    this.taskService.deleteTask(task).subscribe(
-      () =>
-        (this.tasks = this.tasks.filter((task) => {
-          task.id !== task.id;
-        }))
-    );
+    this.taskService.deleteTask(task).subscribe(() => {
+      this.tasks = this.tasks.filter((t) => t.id != task.id);
+    });
   }
 }
