@@ -1,11 +1,11 @@
-<div class="task">
-  <h3>{{ task.text }}</h3>
+<div
+  [ngClass]="{ reminder: task.reminder }"
+  class="task"
+  (dblclick)="onToggle(task)"
+>
+  <h3>
+    {{ task.text }}
+    <button class="delete-btn" (click)="onDelete(task)">Delete</button>
+  </h3>
   <p>{{ task.day }}</p>
-  <button
-    [ngStyle]="{ backgroundColor: 'red', color: 'white' }"
-    (click)="onDelete(task)"
-  >
-    Delete
-  </button>
 </div>
-<!-- <app-button text="Delete" color="red" (click)="onDelete(task)"></app-button> -->
