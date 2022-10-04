@@ -13,21 +13,22 @@ const httpOptions = {
   providedIn: 'root',
 })
 export class TaskService {
-  private apiUrl = 'http://localhost:3000/tasks';
+  private apiUrl = 'https://localhost:7133/api';
+  // readonly apiUrl = 'http://localhost:7133/swagger/api';
 
   constructor(private http: HttpClient) {}
 
   getTasks(): Observable<Task[]> {
-    return this.http.get<Task[]>(this.apiUrl);
+    return this.http.get<Task[]>(this.apiUrl + "/Tasks");
   }
 
   deleteTask(task: Task): Observable<Task> {
-    const url = `${this.apiUrl}/${task.id}`;
+    const url = `${this.apiUrl}/${task.Id}`;
     return this.http.delete<Task>(url);
   }
 
   updateTaskReminder(task: Task): Observable<Task> {
-    const url = `${this.apiUrl}/${task.id}`;
+    const url = `${this.apiUrl}/${task.Id}`;
     return this.http.put<Task>(url, task, httpOptions);
   }
 
