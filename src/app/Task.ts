@@ -1,6 +1,6 @@
 export interface Task {
-  Id?: number;
-  Title: string;
-  Date: string;
-  Reminder: boolean;
+  id?: number;
+  text: string;
+  day: string;
+  reminder: boolean;
 }
