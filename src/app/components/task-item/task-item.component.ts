@@ -13,15 +13,15 @@ export class TaskItemComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {
+  ngOnInit() {
     console.log("Task-Item-Component", this.task);
   }
 
-  onDelete(task: any) {
+  onDelete(task: Task) {
     this.onDeleteTask.emit(task);
   }
 
-  onToggle(task: any) {
+  onToggle(task: Task) {
     this.onToggleReminder.emit(task);
   }
 }
