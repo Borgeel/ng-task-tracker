@@ -1,15 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Task } from '../../Task';
 
 @Component({
   selector: 'app-task-item',
   templateUrl: './task-item.component.html',
-  styleUrls: ['./task-item.component.css']
+  styleUrls: ['./task-item.component.css'],
 })
 export class TaskItemComponent implements OnInit {
+  @Input() task: Task;
+  @Output() onDeleteTask: EventEmitter<Task> = new EventEmitter();
+  @Output() onToggleReminder: EventEmitter<Task> = new EventEmitter();
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
+    console.log("Task-Item-Component", this.task);
   }
 
+  onDelete(task: any) {
+    this.onDeleteTask.emit(task);
+  }
+
+  onToggle(task: any) {
+    this.onToggleReminder.emit(task);
+  }
 }
